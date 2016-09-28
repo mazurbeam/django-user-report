@@ -1,0 +1,11 @@
+.settings
+*.pyc
+*.egg-info
+dist
+build
+MANIFEST
+env
+*.egg
+.eggs
+.coverage
+.idea
