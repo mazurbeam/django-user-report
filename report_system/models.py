@@ -30,7 +30,7 @@ class Ticket(models.Model):
                                      on_delete=models.SET_NULL
                                      )
     object_pk = models.TextField(_('object ID'))
-    content_object = GenericForeignKey(ct_field="content_type", fk_field="object_pk", on_delete=models.CASCADE)
+    content_object = GenericForeignKey(ct_field="content_type", fk_field="object_pk")
 
     # Metadata about the comment
     site = models.ForeignKey(Site, on_delete=models.SET_NULL)
