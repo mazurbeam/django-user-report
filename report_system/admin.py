@@ -2,7 +2,7 @@ from __future__ import unicode_literals
 
 from django.contrib import admin
 from django.contrib.auth import get_user_model
-from django.utils.translation import ugettext_lazy as _, ungettext
+from django.utils.translation import gettext_lazy as _, gettext
 
 from .models import Ticket, TicketType
 from .views import perform_close
@@ -68,19 +68,19 @@ class TicketsAdmin(admin.ModelAdmin):
 
     # def flag_tickets(self, request, queryset):
     #     self._bulk_flag(request, queryset, perform_flag,
-    #                     lambda n: ungettext('flagged', 'flagged', n))
+    #                     lambda n: gettext('flagged', 'flagged', n))
     #
     # flag_tickets.short_description = _("Flag selected tickets")
     #
     # def approve_tickets(self, request, queryset):
     #     self._bulk_flag(request, queryset, perform_approve,
-    #                     lambda n: ungettext('approved', 'approved', n))
+    #                     lambda n: gettext('approved', 'approved', n))
     #
     # approve_tickets.short_description = _("Approve selected tickets")
 
     def close_tickets(self, request, queryset):
         self._bulk_flag(request, queryset, perform_close,
-                        lambda n: ungettext('closed', 'closed', n))
+                        lambda n: gettext('closed', 'closed', n))
 
     close_tickets.short_description = _("Closes selected tickets")
 
@@ -94,7 +94,7 @@ class TicketsAdmin(admin.ModelAdmin):
             action(request, report)
             n_reports += 1
 
-        msg = ungettext('1 report was successfully %(action)s.',
+        msg = gettext('1 report was successfully %(action)s.',
                         '%(count)s comments were successfully %(action)s.',
                         n_reports)
         self.message_user(request, msg % {'count': n_reports, 'action': done_message(n_reports)})
