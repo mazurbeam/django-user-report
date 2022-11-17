@@ -26,14 +26,16 @@ class Ticket(models.Model):
 
     content_type = models.ForeignKey(ContentType,
                                      verbose_name=_('content type'),
-                                     related_name="content_type_set_for_%(class)s")
+                                     related_name="content_type_set_for_%(class)s",
+                                     on_delete=models.SET_NULL
+                                     )
     object_pk = models.TextField(_('object ID'))
-    content_object = GenericForeignKey(ct_field="content_type", fk_field="object_pk")
+    content_object = GenericForeignKey(ct_field="content_type", fk_field="object_pk", on_delete=models.CASCADE)
 
     # Metadata about the comment
-    site = models.ForeignKey(Site)
+    site = models.ForeignKey(Site, on_delete=models.SET_NULL)
 
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_('user'), related_name="%(class)s_tickets")
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_('user'), related_name="%(class)s_tickets", on_delete=models.SET_NULL)
     comment = models.TextField(_('Extra description'), max_length=settings.REPORT_COMMENT_MAX_LENGTH, blank=True)
     submit_date = models.DateTimeField(_('date/time submitted'), auto_now_add=True)
     is_closed = models.BooleanField(_('is removed'), default=False,
