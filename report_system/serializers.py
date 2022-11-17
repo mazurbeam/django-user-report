@@ -7,7 +7,6 @@ from report_system.models import Ticket, TicketType
 from django.contrib.contenttypes.models import ContentType
 from django.core.exceptions import ObjectDoesNotExist
 from django.utils.html import escape
-from django_comments import get_model as get_comment_model
 # DEFAULT_REPORT_SLUG_MODEL_MAPPINGS = {
 #     'user': 'customuser.myuser',
 #     'comment': str(get_comment_model()._meta),
